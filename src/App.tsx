@@ -1,12 +1,13 @@
 import React from 'react';
 import './App.css';
+import { Cost } from './components/costItem';
 
-function App() {
+export function App() {
   return (
     <div className="App">
-     
+      Hello
+      <Cost />
     </div>
   );
 }
 
-export default App;
