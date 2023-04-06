@@ -24,6 +24,8 @@ export function App() {
     setArra(str)
   }
 
+  
+
   return (
     <div className="main">
       <Form funval={funval} />
