@@ -1,0 +1,9 @@
+.content{
+  margin: 50px;
+  max-width: 500px;
+  border-radius: 20px;
+  padding: 20px;
+  display: flex;
+  height: 100%;
+  background-color: chocolate;
+}

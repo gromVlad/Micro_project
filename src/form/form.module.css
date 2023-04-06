@@ -1,0 +1,24 @@
+.inputBox{
+  padding: 20px;
+  width: 100%;
+  font-size: 25px;
+}
+
+.label{
+  padding-right: 50px;
+}
+
+.but{
+  display: block;
+  margin: 0 auto;
+  font-size: 20px;
+  padding: 5px 35px;
+  border-radius: 10px;
+}
+
+.input{
+  max-width: 300px;
+  border-radius: 5px;
+  min-height: 35px;
+  font-size: 20px;
+}
