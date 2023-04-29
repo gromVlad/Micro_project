@@ -1,7 +1,45 @@
-.App {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+
+.selected-container {
+  position: relative;
+  display: inline-block;
+}
+
+.selected-header {
+  padding: 10px;
+  background-color: #eee;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+
+.selected-list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  max-height: 200px;
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  border-top: none;
+  background-color: #fff;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s, visibility 0.2s;
+}
+
+.selected-list.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.selected-item {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.selected-item:hover {
+  background-color: #f1f1f1;
 }
 
