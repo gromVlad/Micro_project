@@ -1,4 +1,4 @@
-import React, { useReducer, useState } from "react";
+import React, { memo, useReducer, useState } from "react";
 import "./App.css";
 
 //create new const type
@@ -77,7 +77,7 @@ type SelectedType = {
   change: (name: string) => void;
 };
 
-const SelectedControll = (props: SelectedType) => {
+const SelectedControll = memo((props: SelectedType) => {
   let [a, setA] = useState<boolean>(false);
 
   const funAddNewElandHidden = (name: string) => {
@@ -104,4 +104,7 @@ const SelectedControll = (props: SelectedType) => {
       </ul>
     </div>
   );
-};
+});
+
+/* либо переназначили отдельно и потом уже используем не SelectedControll а SelectedControllWithMemo в APP компоненте
+const SelectedControllWithMemo = memo(SelectedControll); */
