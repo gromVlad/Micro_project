@@ -21,6 +21,9 @@ let ages3:(number | string | boolean)[] = [18,true,26,27,"hello"]
 
 // !!! значение any означает что мы пишем опять на js -> лучше не использовать
 
+let names:Array<string> = ['vlad','oleg','vit']
+names.map(el => el.toUpperCase())
+
 //----------------------------
 //Objects
 //при типизации нам подсказывает ключи этой типизацией, очень убодно работать 
@@ -148,6 +151,55 @@ let createGarage = (): CreateGarageType => {
     },
   };
 };
+//------------------------------
+//делаем автоматический типизацию
+let initState = {
+  name:'vlad',
+  age:32,
+  isSamurai:true,
+  address:{
+    country:"Bel",
+    city:"minsk"
+  },
+  counter:10
+}
+
+export type initStateType = typeof initState
+
+//--------------------------------
+//типизация на будущее  - воспринимай как (as)
+//например предворительно когда к нам с сервера данные еще не пришли
+let initState2Type = {
+  name: null as | string | null,
+  age: null as number | null,
+  isSamurai: null as boolean | null,
+  address: [] as Array<string>,
+  counter: 0,
+};
+
+export type initStateType2 = typeof initState2Type;
+//когда пришли
+let stateTwo:initStateType2 = {
+  address:['a','b',"c"],
+  name:'vlad',
+  age:24,
+  counter:0,
+  isSamurai:true
+}
+
+//-----------------------------------
+//work with action
+let GET = "GET"
+
+let action: ActionType = {
+  type: GET,
+  id: 12,
+};
+
+type ActionType = {
+  type:typeof GET,
+  id:number
+}
 
 //----------------------------------------
 //Переводим todolist на Typescript
