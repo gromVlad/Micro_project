@@ -1,25 +1,25 @@
 import { ChangeEvent, useState } from "react";
 import { Button } from "./button";
 import { Box } from "./contentBox";
+import { useSelector } from "react-redux";
+import { AppStateType } from "../store/index_state";
+import { GetInputValueThunk, InitStateReduserType } from "../store/reduser_count";
+import { useDispatch } from "react-redux";
 
-type UnsideBoxType = {
-  changeBox: () => void;
-  maxValueFun: (value: string) => void;
-  startValue: (value: string) => void;
-};
 
-export const InsideBox = (props: UnsideBoxType) => {
+export const InsideBox = () => {
+  const state = useSelector<AppStateType, InitStateReduserType>(
+    (state) => state.stateCount
+  );
+  const dispatch = useDispatch();
+
   let [inputValue, setInputValue] = useState<string>("");
   let [inputValueStart, setInputValueStart] = useState<string>("");
 
   const fun = () => {
-    props.maxValueFun(inputValue);
-    localStorage.setItem("maxValue", inputValue);
-    props.startValue(inputValueStart);
-    localStorage.setItem("minValue", inputValueStart);
-    localStorage.setItem("count", inputValueStart);
-    props.changeBox();
+    dispatch(GetInputValueThunk(inputValue, inputValueStart))
   };
+
 
   return (
     <div

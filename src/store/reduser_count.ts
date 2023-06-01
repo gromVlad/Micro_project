@@ -1,5 +1,5 @@
 import { Dispatch } from "react";
-import { Action } from "redux";
+import { Action} from "redux";
 
 const ADD_NUMBER = "ADD_NUMBER";
 const RESET_NUMBER = "RESET_NUMBER"
@@ -13,10 +13,13 @@ const initState = {
   change: false as boolean
 };
 
-export type initStateType = typeof initState
+export type InitStateReduserType = typeof initState
 
 
-export const reduserCount = (state = initState, action: ActionAll): initStateType => {
+export const reduserCount = (
+  state = initState,
+  action: ActionAll
+): InitStateReduserType => {
   switch (action.type) {
     case ADD_NUMBER:
       return { ...state, count: state.count + 1 };
@@ -84,14 +87,14 @@ type ActionAll =
   | ActionStartValueType
 
 // - - -Thunk - - -
-export const AddNumberThunk = (count:number) => {
+export const AddNumberThunk = (count: number): any => {
   return (dispatch: Dispatch<Action>) => {
     dispatch(actionAddNumber());
     localStorage.setItem("count", (count + 1).toString());
   };
 };
 
-export const ResetNumberThunk = () => {
+export const ResetNumberThunk = (): any => {
   return (dispatch: Dispatch<Action>) => {
     dispatch(actionResetNumber());
     localStorage.setItem("minValue", (0).toString());
@@ -99,21 +102,21 @@ export const ResetNumberThunk = () => {
   };
 };
 
-export const GetLocalThunkThunk = () => {
+export const GetLocalThunk = (): any => {
   return (dispatch: Dispatch<Action>) => {
     let getLocalNumberMin = localStorage.getItem("minValue");
     let getLocalNumber = localStorage.getItem("count");
     if (getLocalNumber) {
-      dispatch(actionStartAlsoLocalValue(JSON.parse(getLocalNumber)))
+      dispatch(actionStartAlsoLocalValue(JSON.parse(getLocalNumber)));
     } else if (getLocalNumberMin) {
       dispatch(actionStartAlsoLocalValue(JSON.parse(getLocalNumberMin)));
     } else {
-      dispatch(actionResetNumber())
+      dispatch(actionResetNumber());
     }
   };
 };
 
-export const GetMaxValueThunk = () => {
+export const GetMaxValueThunk = ():any => {
   return (dispatch: Dispatch<Action>) => {
     let getLocalNumberMax = localStorage.getItem("maxValue")
     if (getLocalNumberMax) {
@@ -124,13 +127,16 @@ export const GetMaxValueThunk = () => {
   }
 }
 
-export const GetInputValueThunk = (inputValue: string, inputValueStart:string) => {
+export const GetInputValueThunk = (
+  inputValue: string,
+  inputValueStart: string
+): any => {
   return (dispatch: Dispatch<Action>) => {
-    dispatch(actionMaxValue(inputValue))
-    localStorage.setItem("maxValue", inputValue)
-    dispatch(actionStartAlsoLocalValue(inputValueStart))
+    dispatch(actionMaxValue(inputValue));
+    localStorage.setItem("maxValue", inputValue);
+    dispatch(actionStartAlsoLocalValue(inputValueStart));
     localStorage.setItem("minValue", inputValueStart);
     localStorage.setItem("count", inputValueStart);
     dispatch(actionChangeBox());
-  }
+  };
 }; 

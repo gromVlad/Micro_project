@@ -1,79 +1,55 @@
-import { useState } from "react";
+import { useEffect} from "react";
 import { OutsideBox } from "./components/OutsideBox";
 import { InsideBox } from "./components/InsideBox";
 import "./index.css"
+import { useSelector } from "react-redux";
+import { AppStateType } from "./store/index_state";
+import { AddNumberThunk, GetLocalThunk, GetMaxValueThunk, InitStateReduserType, ResetNumberThunk, actionChangeBox } from "./store/reduser_count";
+import { useDispatch } from "react-redux";
 
 export default function App() {
+  const state = useSelector<AppStateType, InitStateReduserType>(
+    (state) => state.stateCount
+  );
+  const dispatch = useDispatch();
+  console.log(state);
 
-  const getLocal = () => {
-    let getLocalNumberMin = localStorage.getItem("minValue");
-    
-    let getLocalNumber = localStorage.getItem("count");
 
-    if (getLocalNumber) {
-      return +JSON.parse(getLocalNumber);
-    } else if (getLocalNumberMin) {
-      return +JSON.parse(getLocalNumberMin);
-    } else {
-      return 0;
-    }
-  }
+  useEffect(() => {
+    dispatch(GetLocalThunk());
+    dispatch(GetMaxValueThunk());
+  }, [dispatch]);
 
-  const getmaxvalue = () => {
-    let getLocalNumberMax = localStorage.getItem("maxValue");
-
-    if (getLocalNumberMax) {
-      return +JSON.parse(getLocalNumberMax);
-    } else {
-      return 5
-    }
-  }
-  
-  let [count, setCount] = useState<number>(getLocal());
-  let [change, setChange] = useState<boolean>(false);
-  let [maxValue, setValue] = useState<number>(getmaxvalue());
 
   const addNumber = () => {
-    setCount(count + 1);
-    localStorage.setItem("count", (count+1).toString())
+    dispatch(AddNumberThunk(state.count))
   };
 
+  
   const resetNumber = () => {
-    setCount(0);
-    localStorage.setItem("minValue", (0).toString());
-    localStorage.setItem("count", (0).toString());
+    dispatch(ResetNumberThunk())
   };
 
+  
   const changeBox = () => {
-    setChange(!change);
-  };
-
-  const maxValueFun = (value: string) => {
-    setValue(+value);
-  };
-
-  const startValue = (value:string) => {
-    setCount(+value)
+    dispatch(actionChangeBox());
   }
 
   return (
     <div className="App">
-      {!change && (
+      {!state.change && (
         <OutsideBox
-          count={count}
+          count={state.count}
           addNumber={addNumber}
           resetNumber={resetNumber}
           changeBox={changeBox}
-          maxValue={maxValue}
+          maxValue={state.maxCount}
         />
       )}
-      {change && (
-        <InsideBox
-          changeBox={changeBox}
-          maxValueFun={maxValueFun}
-          startValue={startValue}
-        />
-      )}
+      {state.change && <InsideBox />}
     </div>
   );
 }
+
+
+
