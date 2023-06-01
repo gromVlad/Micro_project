@@ -8,7 +8,7 @@ type UnsideBoxType = {
   startValue: (value: string) => void;
 };
 
-export const UnsideBox = (props: UnsideBoxType) => {
+export const InsideBox = (props: UnsideBoxType) => {
   let [inputValue, setInputValue] = useState<string>("");
   let [inputValueStart, setInputValueStart] = useState<string>("");
 

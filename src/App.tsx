@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { OutsideBox } from "./components/OutsideBox";
-import { UnsideBox } from "./components/InsideBox";
+import { InsideBox } from "./components/InsideBox";
 import "./index.css"
 
 export default function App() {
@@ -68,7 +68,7 @@ export default function App() {
         />
       )}
       {change && (
-        <UnsideBox
+        <InsideBox
           changeBox={changeBox}
           maxValueFun={maxValueFun}
           startValue={startValue}
