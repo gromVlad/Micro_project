@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/Micro_project/static/css/main.27712dbc.css",
+    "main.js": "/Micro_project/static/js/main.b9234a5e.js",
+    "index.html": "/Micro_project/index.html",
+    "main.27712dbc.css.map": "/Micro_project/static/css/main.27712dbc.css.map",
+    "main.b9234a5e.js.map": "/Micro_project/static/js/main.b9234a5e.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.27712dbc.css",
+    "static/js/main.b9234a5e.js"
+  ]
+}
